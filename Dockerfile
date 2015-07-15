@@ -1,9 +1,23 @@
-FROM ruby:2.2.2
+FROM cloudgear/build-deps:14.04
+MAINTAINER Aleksandr Bobrov, ITBeaver <al.bobrov@itbeaver.co>
+
+ENV RUBY_VERSION 2.2
+
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C3173AA6 && \
+    echo deb http://ppa.launchpad.net/brightbox/ruby-ng/ubuntu trusty main > /etc/apt/sources.list.d/brightbox-ruby-ng-trusty.list && \
+    apt-get update -q && apt-get install -yq --no-install-recommends \
+        ruby$RUBY_VERSION && \
+
+    # clean up
+    rm -rf /var/lib/apt/lists/* && \
+    truncate -s 0 /var/log/*log && \
+
+    # Setup Rubygems
+    echo 'gem: --no-document' > /etc/gemrc && \
+    gem install bundler && gem update --system
 
 RUN apt-get update \
-  && apt-get install -y -qq libicu-dev libkrb5-dev cmake nodejs curl \
-  && wget -q http://ftp.de.debian.org/debian/pool/main/p/phantomjs/phantomjs_1.9.0-1+b1_amd64.deb \
-  && dpkg -i phantomjs_1.9.0-1+b1_amd64.deb \
+  && apt-get install -y -qq libicu-dev libkrb5-dev cmake nodejs phantomjs \
   && localedef ru_RU.UTF-8 -i ru_RU -fUTF-8 \
   && locale-gen ru_RU.UTF-8
 
