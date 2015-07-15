@@ -7,7 +7,7 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C3173AA6 &
     echo deb http://ppa.launchpad.net/brightbox/ruby-ng/ubuntu trusty main > /etc/apt/sources.list.d/brightbox-ruby-ng-trusty.list && \
     apt-get update -q && apt-get install -yq --no-install-recommends \
         ruby$RUBY_VERSION && \
-        apt-get install -y -qq libicu-dev git libkrb5-dev cmake nodejs imagemagick libmagickwand-dev phantomjs &&\
+        apt-get install -y -qq libicu-dev git libkrb5-dev cmake build-essential nodejs imagemagick libmagickwand-dev phantomjs &&\
         localedef ru_RU.UTF-8 -i ru_RU -fUTF-8 &&\
         locale-gen ru_RU.UTF-8 &&\
 
