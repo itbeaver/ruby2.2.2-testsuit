@@ -17,7 +17,7 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C3173AA6 &
     gem install bundler && gem update --system
 
 RUN apt-get update \
-  && apt-get install -y -qq libicu-dev libkrb5-dev cmake nodejs phantomjs \
+  && apt-get install -y -qq libicu-dev git libkrb5-dev cmake nodejs phantomjs \
   && localedef ru_RU.UTF-8 -i ru_RU -fUTF-8 \
   && locale-gen ru_RU.UTF-8
 
