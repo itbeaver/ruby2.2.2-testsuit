@@ -8,7 +8,7 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C3173AA6 &
     apt-get update -q && apt-get install -yq --no-install-recommends \
         ruby$RUBY_VERSION \
         ruby$RUBY_VERSION-dev \
-        libicu-dev git libkrb5-dev cmake build-essential nodejs imagemagick libmagickwand-dev phantomjs bash &&\
+        libicu-dev git libkrb5-dev cmake build-essential nodejs imagemagick libmagickwand-dev phantomjs file &&\
         localedef ru_RU.UTF-8 -i ru_RU -fUTF-8 &&\
         locale-gen ru_RU.UTF-8 &&\
 
